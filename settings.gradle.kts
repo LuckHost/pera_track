@@ -8,6 +8,7 @@ pluginManagement {
             }
         }
         mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
         gradlePluginPortal()
     }
 }
@@ -21,3 +22,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "PeraTrack"
 include(":app")
+include(":data")
+include(":domain")
