@@ -1,11 +1,16 @@
+import kotlin.coroutines.coroutineContext
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("kapt")
+
+    // Add the dependency for the Google services Gradle plugin
+    alias(libs.plugins.gms)
 }
 
 android {
-    namespace = "com.example.peratrack"
+    namespace = "com.luckhost.peratrack"
     compileSdk = 34
 
     kapt {
@@ -13,7 +18,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.peratrack"
+        applicationId = "com.luckhost.peratrack"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -62,18 +67,16 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
-    // Google auth
-    implementation(libs.play.services.auth) // Google Sign-In для авторизации
-    //implementation("com.google.api-client:google-api-client-android:1.33.0") // Клиент для API
-    //implementation("com.google.apis:google-api-services-gmail:v1-rev83-1.23.0")
-
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.google.api.client)
-    implementation(libs.google.oauth.client.jetty)
-    implementation(libs.google.api.services.gmail)
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
+    implementation(libs.androidx.credentials)
+    // Credentials for Android 13 and below.
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     implementation(libs.kotlinx.coroutines.core)
-
-    implementation(libs.guava) // Оставляем только эту версию
 
     // dagger
     implementation(libs.dagger)

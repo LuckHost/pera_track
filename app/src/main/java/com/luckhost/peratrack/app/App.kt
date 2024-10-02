@@ -1,9 +1,9 @@
-package com.example.peratrack.app
+package com.luckhost.peratrack.app
 
 import android.app.Application
-import com.example.peratrack.di.AppComponent
-import com.example.peratrack.di.AppModule
-import com.example.peratrack.di.DaggerAppComponent
+import com.luckhost.peratrack.di.AppComponent
+import com.luckhost.peratrack.di.AppModule
+import com.luckhost.peratrack.di.DaggerAppComponent
 
 class App : Application() {
     lateinit var appComponent: AppComponent

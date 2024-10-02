@@ -1,6 +1,6 @@
-package com.example.peratrack.di
+package com.luckhost.peratrack.di
 
-import com.example.peratrack.presentation.MainActivity
+import com.luckhost.peratrack.presentation.MainActivity
 import dagger.Component
 
 @Component(modules = [AppModule::class, DomainModule::class, DataModule::class])

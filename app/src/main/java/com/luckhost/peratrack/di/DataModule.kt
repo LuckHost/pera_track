@@ -1,4 +1,4 @@
-package com.example.peratrack.di
+package com.luckhost.peratrack.di
 
 import dagger.Module
 import dagger.Provides

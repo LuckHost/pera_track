@@ -1,4 +1,4 @@
-package com.example.peratrack.di
+package com.luckhost.peratrack.di
 
 import com.peratrack.domain.UseCases.GetAllReceiptsUseCase
 import dagger.Module

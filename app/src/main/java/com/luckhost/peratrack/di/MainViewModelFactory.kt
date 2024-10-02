@@ -1,8 +1,8 @@
-package com.example.peratrack.di
+package com.luckhost.peratrack.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.peratrack.presentation.MainViewModel
+import com.luckhost.peratrack.presentation.MainViewModel
 import com.peratrack.domain.UseCases.GetAllReceiptsUseCase
 
 class MainViewModelFactory(
