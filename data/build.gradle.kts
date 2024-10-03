@@ -36,14 +36,9 @@ dependencies {
     // Other modules
     implementation(project(":domain"))
 
-//    // gmail
-//    implementation(libs.jetbrains.kotlin.stdlib)
-//    implementation(libs.google.api.client)
-//    implementation("com.google.oauth-client:google-oauth-client-jetty:1.33.0")
-//    implementation(libs.google.api.services.gmail)
-//    implementation(libs.kotlinx.coroutines.core)
-//
-//    implementation(libs.guava) // Оставляем только эту версию
+    // mail
+    implementation("com.sun.mail:android-mail:1.6.7")
+    implementation("com.sun.mail:android-activation:1.6.7")
 
 
     implementation(libs.androidx.core.ktx)

@@ -1,4 +1,4 @@
-package com.peratrack.data.models
+package com.peratrack.data
 
 import com.peratrack.domain.repositories.LocalReceiptsRepoInterface
 

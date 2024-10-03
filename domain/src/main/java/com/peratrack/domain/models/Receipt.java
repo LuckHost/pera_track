@@ -13,6 +13,12 @@ public final class Receipt {
         this.totalAmount = null;
     }
 
+    public Receipt(Date date, String storeName, Float totalAmount) {
+        this.date = date;
+        this.storeName = storeName;
+        this.totalAmount = totalAmount;
+    }
+
     @Override
     public String toString() {
         if(totalAmount != null) {

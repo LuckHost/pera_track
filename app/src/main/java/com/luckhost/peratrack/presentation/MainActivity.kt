@@ -11,8 +11,9 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
+import javax.mail.*
+import javax.mail.internet.MimeBodyPart
+import javax.mail.search.FlagTerm
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +26,7 @@ import com.luckhost.peratrack.di.MainViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Properties
 import javax.inject.Inject
 
 
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
         setContentView(binding.root)
-        signIn()
+        fetchEmails()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -89,6 +91,10 @@ class MainActivity : AppCompatActivity() {
                 Log.e("MainView", e.toString())
             }
         }
+    }
+
+    fun fetchEmails() {
+
     }
 
     override fun onStart() {

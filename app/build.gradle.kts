@@ -56,6 +56,8 @@ android {
         packagingOptions {
             resources {
                 excludes += "META-INF/DEPENDENCIES"
+                excludes += "META-INF/NOTICE.md"
+                excludes += "META-INF/LICENSE.md"
             }
         }
     }
@@ -77,6 +79,11 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.kotlinx.coroutines.core)
+
+    // mail
+    implementation("com.sun.mail:android-mail:1.6.7")
+    implementation("com.sun.mail:android-activation:1.6.7")
+
 
     // dagger
     implementation(libs.dagger)
