@@ -8,18 +8,23 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class GetAllReceiptsUseCase {
 
+public class GetAllReceiptsUseCase {
+    private final LocalReceiptsRepoInterface localRepo;
     private final MailboxRepoInterface mailboxRepo;
 
     @Inject
-    public GetAllReceiptsUseCase(MailboxRepoInterface mailboxRepo) {
+    public GetAllReceiptsUseCase(
+            LocalReceiptsRepoInterface localRepo,
+            MailboxRepoInterface mailboxRepo
+    ) {
+        this.localRepo = localRepo;
         this.mailboxRepo = mailboxRepo;
     }
 
     public List<Receipt> execute() {
         /* TODO */
 
-        return mailboxRepo.fetchAllReceipts();
+        return localRepo.getAllReceipts();
     }
 }

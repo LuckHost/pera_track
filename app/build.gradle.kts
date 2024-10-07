@@ -1,5 +1,3 @@
-import kotlin.coroutines.coroutineContext
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -53,7 +51,7 @@ android {
     android {
         // Другие настройки...
 
-        packagingOptions {
+        packaging {
             resources {
                 excludes += "META-INF/DEPENDENCIES"
                 excludes += "META-INF/NOTICE.md"
@@ -65,6 +63,10 @@ android {
 }
 
 dependencies {
+    // dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+
     // Other modules
     implementation(project(":domain"))
     implementation(project(":data"))
@@ -83,11 +85,6 @@ dependencies {
     // mail
     implementation("com.sun.mail:android-mail:1.6.7")
     implementation("com.sun.mail:android-activation:1.6.7")
-
-
-    // dagger
-    implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
