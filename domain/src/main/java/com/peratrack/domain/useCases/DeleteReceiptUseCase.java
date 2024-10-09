@@ -1,15 +1,15 @@
-package com.peratrack.domain.UseCases;
+package com.peratrack.domain.useCases;
 
 import com.peratrack.domain.models.Receipt;
 import com.peratrack.domain.repositories.LocalReceiptsRepoInterface;
 
 import javax.inject.Inject;
 
-public class SaveReceiptUseCase {
+public class DeleteReceiptUseCase {
     private final LocalReceiptsRepoInterface localRepo;
 
     @Inject
-    public SaveReceiptUseCase(
+    public DeleteReceiptUseCase(
             LocalReceiptsRepoInterface localRepo
     ) {
         this.localRepo = localRepo;
@@ -17,6 +17,6 @@ public class SaveReceiptUseCase {
 
     public void execute(Receipt receipt) {
         /* TODO */
-        localRepo.saveReceipt(receipt);
+        localRepo.deleteReceipt(receipt);
     }
 }

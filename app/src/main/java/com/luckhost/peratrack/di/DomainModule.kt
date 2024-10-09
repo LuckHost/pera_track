@@ -1,8 +1,8 @@
 package com.luckhost.peratrack.di
 
-import com.peratrack.data.LocalReceiptsRepoImpl
-import com.peratrack.domain.UseCases.GetAllReceiptsUseCase
-import com.peratrack.domain.UseCases.SaveReceiptUseCase
+import com.peratrack.domain.useCases.DeleteReceiptUseCase
+import com.peratrack.domain.useCases.GetAllReceiptsUseCase
+import com.peratrack.domain.useCases.SaveReceiptUseCase
 import com.peratrack.domain.repositories.LocalReceiptsRepoInterface
 import com.peratrack.domain.repositories.MailboxRepoInterface
 import dagger.Module
@@ -26,6 +26,15 @@ class DomainModule {
         localRepo: LocalReceiptsRepoInterface
     ) : SaveReceiptUseCase {
         return SaveReceiptUseCase(
+            localRepo
+        )
+    }
+
+    @Provides
+    fun provideDeleteReceiptUseCase(
+        localRepo: LocalReceiptsRepoInterface
+    ) : DeleteReceiptUseCase {
+        return DeleteReceiptUseCase(
             localRepo
         )
     }

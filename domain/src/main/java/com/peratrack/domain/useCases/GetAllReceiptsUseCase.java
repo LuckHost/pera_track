@@ -1,4 +1,4 @@
-package com.peratrack.domain.UseCases;
+package com.peratrack.domain.useCases;
 
 import com.peratrack.domain.models.Receipt;
 import com.peratrack.domain.repositories.LocalReceiptsRepoInterface;

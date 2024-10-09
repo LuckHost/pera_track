@@ -1,6 +1,5 @@
 package com.luckhost.peratrack.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -65,6 +64,10 @@ class MainActivity : AppCompatActivity() {
 
             binding.mainText.text = vm.currentName.value
         }
+
+        binding.button2.setOnClickListener {
+            vm.clearList()
+        }
     }
 
     private fun signIn() {
@@ -93,11 +96,5 @@ class MainActivity : AppCompatActivity() {
                 Log.e("MainView", e.toString())
             }
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
     }
 }

@@ -5,12 +5,12 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 
 @Dao
 interface ReceiptDao {
     @Query("SELECT * FROM receipt")
-    fun getAll(): Flowable<List<Receipt>>
+    fun getAll(): Single<List<Receipt>>
 
     @Insert
     fun insertAll(vararg receipts: Receipt): Completable

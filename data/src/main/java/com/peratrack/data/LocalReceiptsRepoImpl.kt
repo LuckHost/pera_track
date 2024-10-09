@@ -1,19 +1,29 @@
 package com.peratrack.data
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Room
+import com.peratrack.data.models.toDomainReceipt
+import com.peratrack.data.models.toReceiptDao
 import com.peratrack.data.room.AppDatabase
-import com.peratrack.data.room.Receipt
 import com.peratrack.domain.repositories.LocalReceiptsRepoInterface
 import io.reactivex.rxjava3.schedulers.Schedulers
 import com.peratrack.domain.models.Receipt as DomainReceipt
 
-
+/**
+ * Receipt repository implementation
+ *
+ * Works with the Room DB and RxJava
+ * Blocks the IO thread to perform CRUD operations
+ *
+ * @param context App context to initialize the Room DataBase
+ */
 class LocalReceiptsRepoImpl(
     private val context: Context
 ) : LocalReceiptsRepoInterface {
 
+    /**
+     * DB initialize
+     */
     companion object {
         fun getDatabase(context: Context): AppDatabase {
             return  Room.databaseBuilder(
@@ -23,49 +33,38 @@ class LocalReceiptsRepoImpl(
         }
     }
 
-
     override fun saveReceipt(receipt: DomainReceipt?) {
         val db = getDatabase(context)
 
-        Log.d("DB", receipt.toString())
-
-        val receiptEntity = Receipt(
-            date = receipt?.date,
-            storeName = receipt?.storeName,
-            totalAmount = receipt?.totalAmount
-        )
-
-        Log.d("DB", receiptEntity.toString())
-
-        db.receiptDao().insertAll(receiptEntity)
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        if (receipt != null) {
+            db.receiptDao().insertAll(receipt.toReceiptDao())
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+        }
     }
 
     override fun deleteReceipt(receipt: DomainReceipt?) {
-        TODO("Not yet implemented")
+        val db = getDatabase(context)
+
+        if (receipt != null) {
+            db.receiptDao().delete(receipt.toReceiptDao())
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+        }
     }
 
-    override fun getAllReceipts(): MutableList<DomainReceipt> {
+    /**
+     * Getting receipts and converting them into the DomainReceipt objects
+     */
+    override fun getAllReceipts(): List<DomainReceipt> {
         val db = getDatabase(context)
-        val result = mutableListOf<DomainReceipt>()
 
-        val d = db.receiptDao().getAll()
+        return db.receiptDao().getAll()
             .subscribeOn(Schedulers.io())
-            .subscribe {
-                it.forEach { item ->
-                    result.add(
-                        DomainReceipt(
-                            item.date,
-                            item.storeName,
-                            item.totalAmount
-                        )
-                    )
+            .map { receiptEntities ->
+                receiptEntities.map { entity ->
+                    entity.toDomainReceipt()
                 }
-            }
-
-        Log.d("DB", result.toString())
-
-        return result
+            }.blockingGet()
     }
 }

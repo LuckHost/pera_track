@@ -1,8 +1,9 @@
 package com.luckhost.peratrack.di
 
 import android.content.Context
-import com.peratrack.domain.UseCases.GetAllReceiptsUseCase
-import com.peratrack.domain.UseCases.SaveReceiptUseCase
+import com.peratrack.domain.useCases.DeleteReceiptUseCase
+import com.peratrack.domain.useCases.GetAllReceiptsUseCase
+import com.peratrack.domain.useCases.SaveReceiptUseCase
 import dagger.Module
 import dagger.Provides
 
@@ -18,11 +19,13 @@ class AppModule(
     @Provides
     fun provideMainViewModelFactory(
         getAllReceiptsUseCase: GetAllReceiptsUseCase,
-        saveReceiptUseCase: SaveReceiptUseCase
+        saveReceiptUseCase: SaveReceiptUseCase,
+        deleteReceiptUseCase: DeleteReceiptUseCase
     ) : MainViewModelFactory {
         return MainViewModelFactory(
             getAllReceiptsUseCase = getAllReceiptsUseCase,
-            saveReceiptUseCase = saveReceiptUseCase
+            saveReceiptUseCase = saveReceiptUseCase,
+            deleteReceiptUseCase = deleteReceiptUseCase
         )
     }
 }
