@@ -59,14 +59,22 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        binding.button.setOnClickListener {
-            vm.updateCurrentReceipt()
+        vm.updateCurrentReceipt()
 
+        binding.button.setOnClickListener {
             binding.mainText.text = vm.currentName.value
         }
 
+
         binding.button2.setOnClickListener {
             vm.clearList()
+        }
+
+        binding.button3.setOnClickListener {
+            vm.saveUserParams(
+                binding.editTextText.text.toString(),
+                binding.editTextText2.text.toString()
+            )
         }
     }
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back_button_description">Вернуться на главный экран</string>
+    <string name="help_button_description">Помощь в получении IMAP пароля</string>
+    <string name="auth_activity_title_text">Войти</string>
+    <string name="email_text_field_hint">Ваш mail</string>
+    <string name="imap_text_field_hint">Ваш IMAP</string>
+</resources>

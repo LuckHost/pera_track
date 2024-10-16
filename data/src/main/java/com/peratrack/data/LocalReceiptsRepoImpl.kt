@@ -1,6 +1,7 @@
 package com.peratrack.data
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import com.peratrack.data.models.toDomainReceipt
 import com.peratrack.data.models.toReceiptDao
@@ -33,13 +34,51 @@ class LocalReceiptsRepoImpl(
         }
     }
 
+    /**
+     * Function that decides which objects need to be saved and saves them
+     */
     override fun saveReceipt(receipt: DomainReceipt?) {
         val db = getDatabase(context)
 
-        if (receipt != null) {
-            db.receiptDao().insertAll(receipt.toReceiptDao())
-                .subscribeOn(Schedulers.io())
-                .subscribe()
+        receipt?.let {
+            if (receipt.uid == 0) {
+                // Checking that an object is new
+                // If so adding it
+                /* TODO it a good idea to migrate on hashcode check */
+                db.receiptDao().findReceipt(
+                    receipt.date.time,
+                    receipt.storeName,
+                    receipt.totalAmount)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
+                    .subscribe({
+
+                    }, { error ->
+                        Log.e("DB", "Error checking receipt: $error")
+                    }, {
+                        // There is no such object, adding it
+                        db.receiptDao().insertAll(receipt.toReceiptDao())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe()
+                    })
+
+
+            } else {
+                // Checking that an object exist
+                db.receiptDao().getReceiptById(receipt.uid)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
+                    .subscribe({
+                        // If so skip adding
+                    }, { error ->
+                        Log.e("DB", "Error checking receipt: $error")
+                    }, {
+                        // If not, than adding
+                        db.receiptDao().insertAll(receipt.toReceiptDao())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe()
+                    })
+            }
         }
     }
 

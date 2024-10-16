@@ -9,8 +9,10 @@ public final class Receipt {
     public Float totalAmount;
 
     public Receipt(
-            Integer uid, Date date,
-            String storeName, Float totalAmount
+            Integer uid,
+            Date date,
+            String storeName,
+            Float totalAmount
     ) {
         this.uid = uid;
         this.date = date;

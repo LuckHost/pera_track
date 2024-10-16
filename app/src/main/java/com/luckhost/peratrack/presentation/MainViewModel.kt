@@ -3,16 +3,21 @@ package com.luckhost.peratrack.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.peratrack.domain.useCases.DeleteReceiptUseCase
-import com.peratrack.domain.useCases.GetAllReceiptsUseCase
-import com.peratrack.domain.useCases.SaveReceiptUseCase
+import com.peratrack.domain.useCases.receiptsRepo.DeleteReceiptUseCase
+import com.peratrack.domain.useCases.receiptsRepo.GetAllReceiptsUseCase
+import com.peratrack.domain.useCases.receiptsRepo.SaveReceiptUseCase
 import com.peratrack.domain.models.Receipt
+import com.peratrack.domain.models.UserParams
+import com.peratrack.domain.useCases.userParams.DeleteUserParamsUseCase
+import com.peratrack.domain.useCases.userParams.SaveUserParamsUseCase
 import java.util.Date
 
 class MainViewModel(
     val getAllReceiptsUseCase: GetAllReceiptsUseCase,
     val saveReceiptUseCase: SaveReceiptUseCase,
-    val deleteReceiptUseCase: DeleteReceiptUseCase
+    val deleteReceiptUseCase: DeleteReceiptUseCase,
+    val saveUserParamsUseCase: SaveUserParamsUseCase,
+    val deleteUserParamsUseCase: DeleteUserParamsUseCase
 ) : ViewModel() {
     init {
         saveReceiptUseCase.execute(
@@ -30,7 +35,17 @@ class MainViewModel(
     }
 
     fun updateCurrentReceipt() {
+        
         currentName.value = getAllReceiptsUseCase.execute().toString()
+    }
+
+    fun saveUserParams(login: String, password: String) {
+        saveUserParamsUseCase.execute(
+            UserParams(
+                login,
+                password
+            )
+        )
     }
 
     fun clearList() {

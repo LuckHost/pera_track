@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#181818"
+    tools:context=".AuthorizationActivity">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="400dp"
+        android:layout_height="0.5dp"
+        android:background="?android:attr/listDivider"
+        android:foreground="#656565"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="@string/back_button_description"
+        android:scaleType="fitCenter"
+        android:src="@drawable/back_button"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:layout_width="348dp"
+        android:layout_height="382dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintVertical_bias="0.157">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="246dp"
+            android:layout_height="77dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="@string/auth_activity_title_text"
+            android:textAlignment="center"
+            android:textColor="@color/main_title_text_color"
+            android:textSize="50sp" />
+
+        <EditText
+            android:id="@+id/mail_text_field"
+            android:layout_width="286dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:autofillHints=""
+
+            android:hint="@string/email_text_field_hint"
+            android:inputType="text"
+
+            android:background="@drawable/text_field_shape"
+            android:textColor="@color/text_field_text_color"
+            android:textColorHint="@color/text_field_hint_text_color"
+
+            android:fontFamily="@font/noto_sans_light"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_height="60dp"
+            android:layout_width="286dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/imap_text_field"
+                android:layout_width="0dp"
+                android:layout_height="59dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:autofillHints=""
+
+                android:inputType="text"
+                android:hint="@string/imap_text_field_hint"
+
+                android:background="@drawable/text_field_shape"
+                android:textColor="@color/text_field_text_color"
+                android:textColorHint="@color/text_field_hint_text_color"
+
+                android:fontFamily="@font/noto_sans_light"
+                android:textSize="25sp" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_marginStart="15dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:contentDescription="@string/help_button_description"
+                android:background="@drawable/help_button_shape"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/question_icon"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

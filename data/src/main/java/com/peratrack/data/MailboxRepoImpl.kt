@@ -14,7 +14,10 @@ import javax.mail.Session
 
 class MailboxRepoImpl: MailboxRepoInterface {
 
-    override fun fetchAllReceipts(): MutableList<Receipt> {
+    override fun fetchAllReceipts(
+        username: String,
+        password: String
+    ): MutableList<Receipt> {
 
         val result = mutableListOf<Receipt>()
 
@@ -28,10 +31,6 @@ class MailboxRepoImpl: MailboxRepoInterface {
                 put("mail.imap.port", "993")
                 put("mail.imap.ssl.enable", "true")
             }
-
-            // Ваши учетные данные для подключения
-            val username = "///"
-            val password = "///"
 
             try {
                 // Создаем сессию
@@ -58,6 +57,7 @@ class MailboxRepoImpl: MailboxRepoInterface {
                     Log.d("MainView", "Subject: ${message.subject}")
 
                     val newReceipt = Receipt(
+                        0,
                         message.sentDate,
                         message.content.toString(),
                         0f

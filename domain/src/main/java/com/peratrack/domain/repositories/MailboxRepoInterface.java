@@ -5,5 +5,5 @@ import com.peratrack.domain.models.Receipt;
 import java.util.List;
 
 public interface MailboxRepoInterface {
-    List<Receipt> fetchAllReceipts();
+    List<Receipt> fetchAllReceipts(String username, String password);
 }
