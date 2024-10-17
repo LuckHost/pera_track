@@ -1,4 +1,4 @@
-package com.luckhost.peratrack.presentation
+package com.luckhost.peratrack.presentation.mainScreen
 
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +19,7 @@ import com.luckhost.peratrack.R
 import com.luckhost.peratrack.app.App
 import com.luckhost.peratrack.databinding.ActivityMainBinding
 import com.luckhost.peratrack.di.MainViewModelFactory
+import com.luckhost.peratrack.presentation.mainScreen.ui.PieChartElement
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,33 +50,20 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        vm.updateCurrentReceipt()
-
-        binding.mainText.text = vm.currentName.value
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        vm.updateCurrentReceipt()
+        binding.pieChart.updateSectorsList(
+            listOf(
+                PieChartElement("Молоко", 0.3f),
+                PieChartElement("Кокос", 0.3f),
+                PieChartElement("Банан", 0.3f),
 
-        binding.button.setOnClickListener {
-            binding.mainText.text = vm.currentName.value
-        }
-
-
-        binding.button2.setOnClickListener {
-            vm.clearList()
-        }
-
-        binding.button3.setOnClickListener {
-            vm.saveUserParams(
-                binding.editTextText.text.toString(),
-                binding.editTextText2.text.toString()
             )
-        }
+        )
     }
 
     private fun signIn() {

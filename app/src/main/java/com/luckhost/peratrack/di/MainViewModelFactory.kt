@@ -2,7 +2,7 @@ package com.luckhost.peratrack.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.luckhost.peratrack.presentation.MainViewModel
+import com.luckhost.peratrack.presentation.mainScreen.MainViewModel
 import com.peratrack.domain.useCases.receiptsRepo.DeleteReceiptUseCase
 import com.peratrack.domain.useCases.receiptsRepo.GetAllReceiptsUseCase
 import com.peratrack.domain.useCases.receiptsRepo.SaveReceiptUseCase

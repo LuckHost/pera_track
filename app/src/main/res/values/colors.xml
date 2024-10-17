@@ -11,4 +11,10 @@
 
     <color name="help_button_stroke_color">#C7C7C7</color>
     <color name="help_button_bg_color">#2B2B2B</color>
+
+    <color name="button_stroke_color">#5A5A5A</color>
+    <color name="button_bg_color">#B3B3B3</color>
+    <color name="button_text_color">#2E2E2E</color>
+
+
 </resources>

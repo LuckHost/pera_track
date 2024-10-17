@@ -1,4 +1,4 @@
-package com.luckhost.peratrack.presentation
+package com.luckhost.peratrack.presentation.mainScreen
 
 
 import androidx.lifecycle.MutableLiveData

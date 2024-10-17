@@ -1,10 +1,11 @@
-package com.luckhost.peratrack
+package com.luckhost.peratrack.presentation.authScreen
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.luckhost.peratrack.R
 
 class AuthorizationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#181818"
-    tools:context=".AuthorizationActivity">
+    tools:context=".presentation.authScreen.AuthorizationActivity">
 
     <View
         android:id="@+id/divider"
-        android:layout_width="400dp"
-        android:layout_height="0.5dp"
+        android:layout_width="match_parent"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_height="1dp"
         android:background="?android:attr/listDivider"
         android:foreground="#656565"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,8 +25,8 @@
 
     <ImageButton
         android:id="@+id/back_button"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/back_button_description"
         android:scaleType="fitCenter"
@@ -37,7 +39,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
-        android:layout_width="348dp"
+        android:layout_width="match_parent"
         android:layout_height="382dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -52,6 +54,7 @@
             android:layout_width="246dp"
             android:layout_height="77dp"
             android:layout_gravity="center_horizontal"
+
             android:fontFamily="@font/noto_sans_bold"
             android:text="@string/auth_activity_title_text"
             android:textAlignment="center"
@@ -60,11 +63,13 @@
 
         <EditText
             android:id="@+id/mail_text_field"
-            android:layout_width="286dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginHorizontal="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:autofillHints=""
+
 
             android:hint="@string/email_text_field_hint"
             android:inputType="text"
@@ -77,8 +82,9 @@
             android:textSize="25sp" />
 
         <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_width="286dp"
+            android:layout_marginHorizontal="60dp"
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -102,7 +108,7 @@
                 android:textSize="25sp" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/help_image_button"
                 android:layout_marginStart="15dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -112,6 +118,45 @@
                 app:srcCompat="@drawable/question_icon"/>
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="60dp"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/help_text_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:textAllCaps="false"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="@string/help_button_text"
+                android:textAlignment="center"
+                android:textColor="@color/main_title_text_color"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/next_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+
+                android:background="@drawable/button_shape"
+
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="@string/next_button_text"
+                android:textAllCaps="false"
+                android:textAlignment="center"
+                android:textColor="@color/button_text_color"
+                android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>
 
