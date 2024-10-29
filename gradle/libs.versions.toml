@@ -1,9 +1,14 @@
 [versions]
 agp = "8.6.1"
 
+androidMail = "1.6.7"
 dagger = "2.52"
+javaxInject = "1"
 room = "2.6.1"
+
 rxjava = "3.1.9"
+rxandroid = "3.0.2"
+
 
 kotlin = "1.9.23"
 coreKtx = "1.13.1"
@@ -26,12 +31,15 @@ playServicesAuth = "21.2.0"
 
 [libraries]
 
+mail-activation = { module = "com.sun.mail:android-activation", version.ref = "androidMail" }
+mail = { module = "com.sun.mail:android-mail", version.ref = "androidMail" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-auth = { module = "com.google.firebase:firebase-auth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 
 room = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
@@ -40,6 +48,7 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-rxjava3 = { group = "androidx.room", name = "room-rxjava3", version.ref = "room" }
 
 rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
+rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentialsVersion" }

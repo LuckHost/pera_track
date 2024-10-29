@@ -38,10 +38,11 @@ dependencies {
     implementation(project(":domain"))
 
     // mail
-    implementation("com.sun.mail:android-mail:1.6.7")
-    implementation("com.sun.mail:android-activation:1.6.7")
+    implementation(libs.mail)
+    implementation(libs.mail.activation)
 
     implementation(libs.rxjava)
+    implementation(libs.rxandroid)
 
     // room
     implementation(libs.room)
