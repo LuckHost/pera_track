@@ -22,7 +22,6 @@ class MailboxRepoImpl: MailboxRepoInterface {
         val result = mutableListOf<Receipt>()
 
         CoroutineScope(Dispatchers.IO).launch {
-            // Настройки для подключения через IMAP
             val properties = Properties().apply {
                 put(
                     "mail.imap.host",
@@ -33,7 +32,6 @@ class MailboxRepoImpl: MailboxRepoInterface {
             }
 
             try {
-                // Создаем сессию
                 val session = Session.getInstance(properties, object : Authenticator() {
                     override fun getPasswordAuthentication(): PasswordAuthentication {
                         return PasswordAuthentication(username, password)

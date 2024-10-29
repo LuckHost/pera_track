@@ -18,6 +18,7 @@ class MainViewModelFactory(
 
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        @Suppress("UNCHECKED_CAST")
         return MainViewModel(
             getAllReceiptsUseCase = getAllReceiptsUseCase,
             saveReceiptUseCase = saveReceiptUseCase,

@@ -7,7 +7,6 @@ import com.peratrack.domain.useCases.receiptsRepo.DeleteReceiptUseCase
 import com.peratrack.domain.useCases.receiptsRepo.GetAllReceiptsUseCase
 import com.peratrack.domain.useCases.receiptsRepo.SaveReceiptUseCase
 import com.peratrack.domain.models.Receipt
-import com.peratrack.domain.models.UserParams
 import com.peratrack.domain.useCases.userParams.DeleteUserParamsUseCase
 import com.peratrack.domain.useCases.userParams.SaveUserParamsUseCase
 import java.util.Date
@@ -37,15 +36,6 @@ class MainViewModel(
     fun updateCurrentReceipt() {
         
         currentName.value = getAllReceiptsUseCase.execute().toString()
-    }
-
-    fun saveUserParams(login: String, password: String) {
-        saveUserParamsUseCase.execute(
-            UserParams(
-                login,
-                password
-            )
-        )
     }
 
     fun clearList() {

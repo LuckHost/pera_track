@@ -1,16 +1,12 @@
 package com.luckhost.peratrack.presentation.mainScreen
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.credentials.CredentialManager
-import androidx.credentials.GetCredentialRequest
-import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -19,10 +15,8 @@ import com.luckhost.peratrack.R
 import com.luckhost.peratrack.app.App
 import com.luckhost.peratrack.databinding.ActivityMainBinding
 import com.luckhost.peratrack.di.MainViewModelFactory
+import com.luckhost.peratrack.presentation.authScreen.AuthorizationActivity
 import com.luckhost.peratrack.presentation.mainScreen.ui.PieChartElement
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -39,9 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         (applicationContext as App).appComponent.inject(this)
-
         vm = ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
-
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         FirebaseApp.initializeApp(this)
@@ -58,39 +50,16 @@ class MainActivity : AppCompatActivity() {
 
         binding.pieChart.updateSectorsList(
             listOf(
-                PieChartElement("Молоко", 0.3f),
-                PieChartElement("Кокос", 0.3f),
-                PieChartElement("Банан", 0.3f),
-
+                PieChartElement("Молоко", 1235f),
+                PieChartElement("Кокос", 365f),
+                PieChartElement("Банан", 344f),
             )
         )
-    }
 
-    private fun signIn() {
-        val context = this
+        binding.textView2.text = vm.getAllReceiptsUseCase.execute().toString()
 
-        val googleIdOption = GetGoogleIdOption.Builder()
-            .setFilterByAuthorizedAccounts(false)
-            .setServerClientId(context.getString(R.string.default_web_client_id))
-            .setAutoSelectEnabled(true)
-            .build()
-
-        val request: GetCredentialRequest = GetCredentialRequest.Builder()
-            .addCredentialOption(googleIdOption)
-            .build()
-
-        val credentialManager = CredentialManager.create(this)
-
-        CoroutineScope(Dispatchers.Main).launch {
-            try {
-                val result = credentialManager.getCredential(
-                    request = request,
-                    context = context,
-                )
-                Log.d("MainView", result.toString())
-            } catch (e: GetCredentialException) {
-                Log.e("MainView", e.toString())
-            }
+        binding.startAuthActivity.setOnClickListener {
+            startActivity(Intent(this, AuthorizationActivity::class.java))
         }
     }
 }

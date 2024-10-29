@@ -1,30 +1,48 @@
 package com.luckhost.peratrack.presentation.mainScreen.ui
 
+import android.util.Log
+import androidx.core.graphics.ColorUtils
+import kotlin.math.absoluteValue
+
 /**
- * Источник
+ * Source
  * https://habr.com/ru/articles/730924/
  *
- * Представляет собой модель хранения смежной информации о рисуемом объекте диаграммы.
- *
- * @property percentOfCircle - значение занимаемого процента круговой диаграммы,
- * откуда должен начать отрисовываться объект.
+ * @property value - The value of the part. Like the price of one item in the receipt.
+ * @property percentOfCircle - percent of diagram. Should be between 0 and 100
+ * @property color - Color of stroke of this part
  */
 data class PieChartElement(
     var itemName: String,
-    var percentOfCircle: Float,
+    var value: Float,
+    var color: Int = -1
 ) {
-    /**
-     * Блок, в котором значения преобразуются к приближенным значениям круговой диаграммы.
-     * То есть в модель передается процент (от 0 до 100).
-     */
-    init {
-        // Проверка на корректность переданного процента.
-        if (percentOfCircle < 0 || percentOfCircle > 100) {
-            throw IllegalArgumentException(
-                "percentOfCircle must been between 0 and 100, but was $percentOfCircle")
-        }
+    var percentOfCircle: Float = -1f
 
-        // Расчет переданного значения на круговой диаграмме.
+    init {
+
+        // Calculating circle part percent by the giving parameter
         percentOfCircle = 360 * percentOfCircle / 100
+
+        Log.d("PieChatElement", percentOfCircle.toString())
+
+        // Calculating the color by the name if it is not stated
+        if (color == -1) {
+            color = generateColorForName(itemName)
+        }
+    }
+
+    private fun generateColorForName(itemName: String): Int {
+        // Get index from entered string to subsequent steps
+        val index = itemName.hashCode().absoluteValue
+
+        // Hue from 0 to 360
+        // Using the golden ratio for uniform distribution
+        val hue = (index * 137.508).toFloat() % 360
+        val saturation = 0.7f
+        val lightness = 0.6f
+
+        // Converting in to the HSL color
+        return ColorUtils.HSLToColor(floatArrayOf(hue, saturation, lightness))
     }
 }

@@ -34,4 +34,15 @@ class AppModule(
             deleteUserParamsUseCase = deleteUserParamsUseCase
         )
     }
+
+    @Provides
+    fun provideAuthViewModelFactory(
+        saveUserParamsUseCase: SaveUserParamsUseCase,
+        deleteUserParamsUseCase: DeleteUserParamsUseCase
+    ) : AuthViewModelFactory {
+        return AuthViewModelFactory(
+            saveUserParamsUseCase = saveUserParamsUseCase,
+            deleteUserParamsUseCase = deleteUserParamsUseCase
+        )
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
 
@@ -13,18 +14,26 @@ class PieChartView(
 ) : View(context, attributeSet) {
 
     companion object {
-        /* Ширина строки круговой диаграммы*/
-        const val DEFAULT_STROKE_WIDTH = 5f
+        /* Stroke of pie chart element width */
+        const val DEFAULT_STROKE_WIDTH = 15f
     }
 
     // The map of parts of a diagram
     private var sectorsList: List<PieChartElement> = listOf()
-    private val paint = Paint()
+    private var totalAmount: Float = 0f
+    private val chartPaint = Paint()
+
+    private val textPaint = Paint()
+    private val textRect = Rect()
 
     init {
-        paint.style = Paint.Style.FILL
-        paint.color = Color.CYAN
-        paint.strokeWidth = DEFAULT_STROKE_WIDTH
+        chartPaint.style = Paint.Style.STROKE
+        chartPaint.color = Color.CYAN
+        chartPaint.strokeWidth = DEFAULT_STROKE_WIDTH
+        chartPaint.isDither = true
+
+        textPaint.color = Color.WHITE
+        textPaint.textSize = 80f
     }
 
     // Updating the chart content
@@ -32,32 +41,44 @@ class PieChartView(
         sectorsList = newList
 
         // Bringing the sum of all "percentOfCircle" of elements to 360
-        val percentSum = sectorsList.sumOf { it.percentOfCircle.toDouble() }
-        if (percentSum < 360) {
-            val valueToAdd: Float = (360 - percentSum).toFloat() / sectorsList.count()
-            sectorsList.map {
-                it.percentOfCircle += valueToAdd
-            }
-        } else if (percentSum > 360) {
-            val valueToSubtract: Float = (percentSum - 360).toFloat() / sectorsList.count()
-            sectorsList.map {
-                it.percentOfCircle -= valueToSubtract
-            }
+        totalAmount = sectorsList.sumOf { it.value.toDouble() }.toFloat()
+
+        sectorsList.map {
+            it.percentOfCircle = 360 * (it.value / totalAmount)
         }
 
         invalidate()
     }
 
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+    private fun drawAmount(canvas: Canvas) {
+        val text = totalAmount.toString()
+
         val center = width / 2f
-        val radius = width.coerceAtMost(height) / 2f
+
+        textPaint.getTextBounds(text, 0, text.length, textRect)
+
+        val textWidth = textPaint.measureText(text)
+        val textHeight = textRect.height()
+
+
+
+        canvas.drawText(
+            totalAmount.toString(),
+            center - (textWidth / 2f),
+            center + (textHeight /2f),
+            textPaint
+        )
+
+    }
+
+    private fun drawCircle(canvas: Canvas) {
+        val center = width / 2f
+        val radius = width.coerceAtMost(height) / 2f - DEFAULT_STROKE_WIDTH
         var startAngle = 0f
 
         for (i in sectorsList) {
             // Calculate color from name
-            paint.color = i.itemName.hashCode()
-
+            chartPaint.color = i.color
 
             canvas.drawArc(
                 center - radius,
@@ -66,11 +87,17 @@ class PieChartView(
                 center + radius,
                 startAngle,
                 i.percentOfCircle,
-                true,
-                paint
+                false,
+                chartPaint
             )
 
             startAngle += i.percentOfCircle
         }
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        drawCircle(canvas)
+        drawAmount(canvas)
     }
 }

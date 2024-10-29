@@ -11,22 +11,22 @@
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
         android:foreground="#656565"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <ImageButton
         android:id="@+id/back_button"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/back_button_description"
         android:scaleType="fitCenter"
@@ -40,6 +40,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        app:layout_constraintWidth_max="500dp"
         android:layout_height="382dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -128,11 +129,10 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/help_text_button"
                 style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/help_text_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
 
                 android:textAllCaps="false"
                 android:fontFamily="@font/noto_sans_bold"
@@ -142,8 +142,8 @@
                 android:textSize="20sp"/>
 
             <Button
-                android:id="@+id/next_button"
                 style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/next_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
