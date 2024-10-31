@@ -29,13 +29,12 @@ class MainViewModel(
         )
     }
 
-    val currentName: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
+    val currentList: MutableLiveData<List<Receipt>> by lazy {
+        MutableLiveData<List<Receipt>>()
     }
 
-    fun updateCurrentReceipt() {
-        
-        currentName.value = getAllReceiptsUseCase.execute().toString()
+    fun updateCurrentList() {
+        currentList.value = getAllReceiptsUseCase.execute()
     }
 
     fun clearList() {

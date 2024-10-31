@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="auth_black">#FF000000</color>
+    <color name="auth_white">#FFFFFFFF</color>
+    <color name="auth_main_title_text_color">#C7C7C7</color>
+
+    <color name="auth_divider_color">#656565</color>
+
+    <color name="auth_text_field_text_color">#C7C7C7</color>
+    <color name="auth_text_field_hint_text_color">#4F4F4F</color>
+    <color name="auth_text_field_bg_color">#1E1E1E</color>
+    <color name="auth_text_field_stroke_color">#5A5A5A</color>
+
+    <color name="auth_help_button_stroke_color">#C7C7C7</color>
+    <color name="auth_help_button_bg_color">#2B2B2B</color>
+
+    <color name="auth_button_stroke_color">#5A5A5A</color>
+    <color name="auth_button_bg_color">#B3B3B3</color>
+    <color name="auth_button_text_color">#2E2E2E</color>
+</resources>

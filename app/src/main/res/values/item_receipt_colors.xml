@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- recitem in each name means receipt item -->
+<resources>
+    <color name="recitem_text_color">#C7C7C7</color>
+    <color name="recitem_divider_color">#656565</color>
+
+</resources>
