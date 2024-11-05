@@ -24,7 +24,7 @@ class MainViewModel(
                 0,
                 Date(),
                 "",
-                0f
+                100.1f
             )
         )
     }

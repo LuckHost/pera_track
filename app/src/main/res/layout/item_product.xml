@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+
+    android:background="@drawable/item_product_shape">
+
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:fontFamily="@font/noto_sans"
+        android:textColor="@color/item_product_text_color"
+        tool:text="Яички"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/first_divider"
+        android:layout_width="1dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+
+        android:foreground="@color/item_product_stroke"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/second_divider"
+        app:layout_constraintStart_toEndOf="@+id/first_divider"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:fontFamily="@font/noto_sans"
+        android:textColor="@color/item_product_text_color"
+
+        tool:text="Яички" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/second_divider"
+        android:layout_width="1dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+
+        android:foreground="@color/item_product_stroke"/>
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/second_divider"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:fontFamily="@font/noto_sans"
+        android:textColor="@color/item_product_text_color"
+
+        tool:text="95 р." />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

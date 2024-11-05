@@ -1,7 +1,7 @@
 package com.luckhost.peratrack.di
 
 import com.luckhost.peratrack.presentation.authScreen.AuthorizationActivity
-import com.luckhost.peratrack.presentation.mainScreen.ChartWithListFragment
+import com.luckhost.peratrack.presentation.mainScreen.chartWithListFragment.ChartWithListFragment
 import com.luckhost.peratrack.presentation.mainScreen.MainActivity
 import dagger.Component
 

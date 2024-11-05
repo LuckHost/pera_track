@@ -1,6 +1,5 @@
 package com.peratrack.data
 
-import android.util.Log
 import com.peratrack.domain.models.Receipt
 import com.peratrack.domain.repositories.MailboxRepoInterface
 import io.reactivex.rxjava3.core.Single
@@ -74,8 +73,6 @@ class MailboxRepoImpl: MailboxRepoInterface {
         val messages = inbox.messages
 
         for (message in messages) {
-            Log.d("MainView", "From: ${message.from.joinToString()}")
-            Log.d("MainView", "Subject: ${message.subject}")
 
             val newReceipt = Receipt(
                 0,

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- reccreat in each name means receipt creating -->
+<resources>
+    <string name="fragment_reccreat_total_amount_text">Общая сумма</string>
+</resources>

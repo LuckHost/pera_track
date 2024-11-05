@@ -66,6 +66,7 @@ dependencies {
     // dagger
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+    implementation("androidx.fragment:fragment-ktx:1.3.6")
 
     // Other modules
     implementation(project(":domain"))
@@ -77,14 +78,15 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.play.services.auth)
     implementation(libs.androidx.credentials)
+
     // Credentials for Android 13 and below.
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.kotlinx.coroutines.core)
 
     // mail
-    implementation("com.sun.mail:android-mail:1.6.7")
-    implementation("com.sun.mail:android-activation:1.6.7")
+    implementation(libs.mail)
+    implementation(libs.mail.activation)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

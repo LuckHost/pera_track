@@ -1,4 +1,4 @@
-package com.luckhost.peratrack.presentation.mainScreen
+package com.luckhost.peratrack.presentation.mainScreen.chartWithListFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.luckhost.peratrack.app.App
 import com.luckhost.peratrack.databinding.FragmentChartWithListBinding
 import com.luckhost.peratrack.di.MainViewModelFactory
-import com.luckhost.peratrack.presentation.mainScreen.ui.PieChartElement
-import com.luckhost.peratrack.presentation.mainScreen.ui.RecyclerReceiptAdapter
 import javax.inject.Inject
+
+import com.luckhost.peratrack.presentation.mainScreen.MainViewModel
+
 
 class ChartWithListFragment : Fragment() {
 
@@ -25,13 +26,14 @@ class ChartWithListFragment : Fragment() {
 
     private lateinit var adapter: RecyclerReceiptAdapter // Adapter for recycle view
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         (activity?.application as App).appComponent.inject(this)
-        vm = ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
+        vm = ViewModelProvider(requireActivity(), vmFactory)[MainViewModel::class.java]
         binding = FragmentChartWithListBinding.inflate(layoutInflater)
 
         return binding.root
@@ -39,9 +41,11 @@ class ChartWithListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeNewReceipts()
+    }
+
+    private fun observeNewReceipts() {
         vm.currentList.observe(activity as LifecycleOwner) {
-
-
             binding.pieChart.updateSectorsList(
                 it.map { item ->
                     PieChartElement(
@@ -50,7 +54,6 @@ class ChartWithListFragment : Fragment() {
                     )
                 }
             )
-
 
             val manager = LinearLayoutManager(activity?.application)
             adapter = RecyclerReceiptAdapter(it)

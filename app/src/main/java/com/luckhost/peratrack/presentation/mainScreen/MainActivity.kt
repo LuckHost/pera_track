@@ -6,12 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import com.google.firebase.auth.FirebaseAuth
 import com.luckhost.peratrack.R
 import com.luckhost.peratrack.app.App
 import com.luckhost.peratrack.databinding.ActivityMainBinding
 import com.luckhost.peratrack.di.MainViewModelFactory
-import com.luckhost.peratrack.presentation.mainScreen.ui.RecyclerReceiptAdapter
+import com.luckhost.peratrack.presentation.mainScreen.chartWithListFragment.ChartWithListFragment
 import javax.inject.Inject
 
 
@@ -27,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         (applicationContext as App).appComponent.inject(this)
+
         vm = ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
         binding = ActivityMainBinding.inflate(layoutInflater)
 
@@ -39,13 +39,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
-
-        vm.updateCurrentList()
-
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.main_frame, ChartWithListFragment.newInstance())
             .commit()
+
+        vm.updateCurrentList()
     }
 }

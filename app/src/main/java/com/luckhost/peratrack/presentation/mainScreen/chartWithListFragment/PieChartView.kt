@@ -1,4 +1,4 @@
-package com.luckhost.peratrack.presentation.mainScreen.ui
+package com.luckhost.peratrack.presentation.mainScreen.chartWithListFragment
 
 import android.content.Context
 import android.graphics.Canvas
@@ -15,7 +15,7 @@ class PieChartView(
 
     companion object {
         /* Stroke of pie chart element width */
-        const val DEFAULT_STROKE_WIDTH = 15f
+        const val DEFAULT_STROKE_WIDTH = 45f
     }
 
     // The map of parts of a diagram
@@ -24,6 +24,7 @@ class PieChartView(
     private val chartPaint = Paint()
 
     private val textPaint = Paint()
+    // is needed to draw an amount in the center of the circle
     private val textRect = Rect()
 
     init {
@@ -34,6 +35,17 @@ class PieChartView(
 
         textPaint.color = Color.WHITE
         textPaint.textSize = 80f
+
+        // preview data
+        if (isInEditMode) {
+            totalAmount = 2264.3f
+            updateSectorsList(listOf(
+                PieChartElement("Командор", 1902f),
+                PieChartElement("Красный яр", 362f)
+            ))
+
+            setBackgroundColor(Color.parseColor("#E0E0E0"))
+        }
     }
 
     // Updating the chart content
@@ -51,28 +63,34 @@ class PieChartView(
     }
 
     private fun drawAmount(canvas: Canvas) {
-        val text = totalAmount.toString()
+        // draw an integer if there are no signs after the dot
+        // and a fractional number if there are
+        val text = if (totalAmount % 1.0f == 0.0f) {
+            totalAmount.toInt().toString()
+        } else {
+            totalAmount.toString()
+        }
 
-        val center = width / 2f
+        val centerX = width/2f
+        val centerY= height/2f
 
         textPaint.getTextBounds(text, 0, text.length, textRect)
 
         val textWidth = textPaint.measureText(text)
         val textHeight = textRect.height()
 
-
-
         canvas.drawText(
-            totalAmount.toString(),
-            center - (textWidth / 2f),
-            center + (textHeight /2f),
+            text,
+            centerX - (textWidth / 2f),
+            centerY + (textHeight /2f),
             textPaint
         )
-
     }
 
     private fun drawCircle(canvas: Canvas) {
-        val center = width / 2f
+        val centerX = width/2f
+        val centerY= height/2f
+
         val radius = width.coerceAtMost(height) / 2f - DEFAULT_STROKE_WIDTH
         var startAngle = 0f
 
@@ -81,10 +99,10 @@ class PieChartView(
             chartPaint.color = i.color
 
             canvas.drawArc(
-                center - radius,
-                center - radius,
-                center + radius,
-                center + radius,
+                centerX - radius,
+                centerY - radius,
+                centerX + radius,
+                centerY + radius,
                 startAngle,
                 i.percentOfCircle,
                 false,

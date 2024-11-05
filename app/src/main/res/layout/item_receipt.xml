@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#181818"
@@ -16,8 +17,8 @@
         android:foreground="@color/recitem_divider_color"
 
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/listOfGoodsText"/>
+        app:layout_constraintEnd_toEndOf="@+id/listOfGoodsText"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <LinearLayout
@@ -39,15 +40,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Командор"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recitem_divider"
+            app:layout_constraintVertical_bias="0.2"
+
             android:textColor="@color/recitem_text_color"
             android:textSize="25sp"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@+id/recitem_divider"
-            app:layout_constraintVertical_bias="0.2" />
+            tool:text="Командор"/>
 
         <TextView
             android:id="@+id/dateText"
@@ -55,13 +56,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="11/10/24"
-            android:textColor="@color/recitem_text_color"
-            android:fontFamily="@font/noto_sans_light"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/storeNameText" />
+            app:layout_constraintTop_toBottomOf="@+id/storeNameText"
+
+            android:fontFamily="@font/noto_sans_light"
+            android:textColor="@color/recitem_text_color"
+
+            tool:text="11/10/24"/>
 
     </LinearLayout>
 
@@ -70,14 +72,14 @@
         style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_bold"
         android:paddingLeft="5dp"
+
+
         android:paddingRight="5dp"
-
-
         android:text="1902"
         android:textColor="@color/recitem_text_color"
         android:textSize="35sp"
-        android:fontFamily="@font/noto_sans_bold"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,14 +93,14 @@
         android:layout_weight="1"
         android:padding="3dp"
 
-        android:text="Яички, хлебушек, консервы, кура грилль,
-    маслята и лисички,  килограмм клубнички.."
-        android:textColor="@color/recitem_text_color"
-
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/receiptAmount"
+        app:layout_constraintStart_toEndOf="@+id/storeName_with_date_layout"
         app:layout_constraintTop_toBottomOf="@+id/recitem_divider"
 
-        app:layout_constraintEnd_toStartOf="@+id/receiptAmount"
-        app:layout_constraintStart_toEndOf="@+id/storeName_with_date_layout" />
+        android:textColor="@color/recitem_text_color"
+
+        tool:text="Яички, хлебушек, консервы, кура грилль,
+    маслята и лисички,  килограмм клубнички.."/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

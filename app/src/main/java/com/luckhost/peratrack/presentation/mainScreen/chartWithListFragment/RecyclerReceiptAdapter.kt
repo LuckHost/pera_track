@@ -1,4 +1,4 @@
-package com.luckhost.peratrack.presentation.mainScreen.ui
+package com.luckhost.peratrack.presentation.mainScreen.chartWithListFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -24,11 +24,11 @@ class RecyclerReceiptAdapter(
     }
 
     override fun onBindViewHolder(holder: ReceiptViewHolder, position: Int) {
-        val receipt = data[position] // Получение человека из списка данных по позиции
+        val receipt = data[position]
         with(holder.binding) {
 
-            storeNameText.text = receipt.storeName // Отрисовка имени пользователя
-            dateText.text = receipt.date.toString() // Отрисовка компании пользователя
+            storeNameText.text = receipt.storeName
+            dateText.text = receipt.date.toString()
             receiptAmount.text = receipt.totalAmount.toString()
         }
     }

@@ -1,6 +1,5 @@
-package com.luckhost.peratrack.presentation.mainScreen.ui
+package com.luckhost.peratrack.presentation.mainScreen.chartWithListFragment
 
-import android.util.Log
 import androidx.core.graphics.ColorUtils
 import kotlin.math.absoluteValue
 
@@ -20,12 +19,6 @@ data class PieChartElement(
     var percentOfCircle: Float = -1f
 
     init {
-
-        // Calculating circle part percent by the giving parameter
-        percentOfCircle = 360 * percentOfCircle / 100
-
-        Log.d("PieChatElement", percentOfCircle.toString())
-
         // Calculating the color by the name if it is not stated
         if (color == -1) {
             color = generateColorForName(itemName)

@@ -38,7 +38,8 @@ public class GetAllReceiptsUseCase {
         UserParams params = paramsRepo.getParams();
 
         // fetch receipts from mail
-        mailboxRepo.fetchAllReceipts(params.login, params.password)
+        if(params != null && params.login != null && params.password != null) {
+            mailboxRepo.fetchAllReceipts(params.login, params.password)
                 .subscribe(new SingleObserver<List<Receipt>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
@@ -55,7 +56,7 @@ public class GetAllReceiptsUseCase {
 
                     }
                 });
-
+        }
 
         result.addAll(localRepo.getAllReceipts());
         return result;
