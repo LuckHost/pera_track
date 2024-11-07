@@ -1,6 +1,8 @@
 package com.luckhost.peratrack.presentation.mainScreen.chartWithListFragment
 
 import android.view.LayoutInflater
+import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.luckhost.peratrack.databinding.ItemReceiptBinding
@@ -10,7 +12,8 @@ import com.peratrack.domain.models.Receipt
  * Recycler view adapter that for receipts scroll list
  */
 class RecyclerReceiptAdapter(
-    private val data: List<Receipt>
+    private val data: List<Receipt>,
+    private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerReceiptAdapter.ReceiptViewHolder>() {
 
     class ReceiptViewHolder(val binding: ItemReceiptBinding) :
@@ -26,10 +29,13 @@ class RecyclerReceiptAdapter(
     override fun onBindViewHolder(holder: ReceiptViewHolder, position: Int) {
         val receipt = data[position]
         with(holder.binding) {
-
             storeNameText.text = receipt.storeName
             dateText.text = receipt.date.toString()
             receiptAmount.text = receipt.totalAmount.toString()
+
+            root.setOnClickListener {
+                onItemClick(position)
+            }
         }
     }
 

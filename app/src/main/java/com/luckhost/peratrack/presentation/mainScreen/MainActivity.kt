@@ -46,4 +46,8 @@ class MainActivity : AppCompatActivity() {
 
         vm.updateCurrentList()
     }
+
+    fun changeFragmentToReceiptCreating() {
+
+    }
 }

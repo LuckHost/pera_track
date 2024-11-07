@@ -1,6 +1,9 @@
 package com.peratrack.data.room
 
 import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.peratrack.domain.models.Product
 import java.util.Date
 
 class Converters {

@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.luckhost.peratrack.R
 import com.luckhost.peratrack.app.App
 import com.luckhost.peratrack.databinding.FragmentChartWithListBinding
 import com.luckhost.peratrack.di.MainViewModelFactory
 import javax.inject.Inject
 
 import com.luckhost.peratrack.presentation.mainScreen.MainViewModel
+import com.luckhost.peratrack.presentation.mainScreen.receiptCreatingFragment.ReceiptCreatingFragment
 
 
 class ChartWithListFragment : Fragment() {
@@ -56,7 +58,13 @@ class ChartWithListFragment : Fragment() {
             )
 
             val manager = LinearLayoutManager(activity?.application)
-            adapter = RecyclerReceiptAdapter(it)
+            adapter = RecyclerReceiptAdapter(it) { selectedReceiptIndex ->
+                val fragment = ReceiptCreatingFragment.newInstance(selectedReceiptIndex)
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.main_frame, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
             binding.recyclerView.layoutManager =
                 manager
             binding.recyclerView.adapter = adapter

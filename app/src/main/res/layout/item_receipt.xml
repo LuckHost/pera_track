@@ -8,7 +8,6 @@
     android:padding="7dp">
 
 
-    <!--TODO change hardcoded text -->
     <View
         android:id="@+id/recitem_divider"
         android:layout_width="wrap_content"
@@ -74,7 +73,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_bold"
         android:paddingLeft="5dp"
-
 
         android:paddingRight="5dp"
         android:text="1902"

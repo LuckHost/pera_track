@@ -24,7 +24,8 @@ class MainViewModel(
                 0,
                 Date(),
                 "",
-                100.1f
+                100.1f,
+                listOf()
             )
         )
     }
@@ -33,6 +34,13 @@ class MainViewModel(
         MutableLiveData<List<Receipt>>()
     }
 
+    fun insertProductInReceipt(receiptPosition: Int, ) {
+
+    }
+
+    /**
+     * Fetch all receipts from Data
+     */
     fun updateCurrentList() {
         currentList.value = getAllReceiptsUseCase.execute()
     }

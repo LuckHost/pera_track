@@ -3,4 +3,10 @@
 <!-- reccreat in each name means receipt creating -->
 <resources>
     <string name="fragment_reccreat_total_amount_text">Общая сумма</string>
+
+    <string name="fragment_reccreat_count_field_units_text">%1$s шт.</string>
+    <string name="fragment_reccreat_count_field_kilograms_text">%1$s кг</string>
+    <string name="fragment_reccreat_count_field_grams_text">%1$s г</string>
+
+    <string name="fragment_reccreat_amount_field_text">%1$s %2$s.</string>
 </resources>

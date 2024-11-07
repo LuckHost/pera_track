@@ -72,13 +72,14 @@ class MailboxRepoImpl: MailboxRepoInterface {
         // Получаем письма (можно добавить фильтры, например, только непрочитанные письма)
         val messages = inbox.messages
 
+        /*TODO create normal formating*/
         for (message in messages) {
-
             val newReceipt = Receipt(
                 0,
                 message.sentDate,
                 message.content.toString(),
-                0f
+                0f,
+                listOf()
             )
 
             result.add(newReceipt)

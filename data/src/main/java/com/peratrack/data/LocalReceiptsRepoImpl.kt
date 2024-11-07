@@ -3,9 +3,11 @@ package com.peratrack.data
 import android.content.Context
 import android.util.Log
 import androidx.room.Room
-import com.peratrack.data.models.toDomainReceipt
-import com.peratrack.data.models.toReceiptDao
+import com.peratrack.data.room.toDomainReceipt
 import com.peratrack.data.room.AppDatabase
+import com.peratrack.data.room.toDataProduct
+import com.peratrack.data.room.toDataReceipt
+import com.peratrack.data.room.toDomainProduct
 import com.peratrack.domain.repositories.LocalReceiptsRepoInterface
 import io.reactivex.rxjava3.schedulers.Schedulers
 import com.peratrack.domain.models.Receipt as DomainReceipt
@@ -57,9 +59,15 @@ class LocalReceiptsRepoImpl(
                         Log.e("DB", "Error checking receipt: $error")
                     }, {
                         // There is no such object, adding it
-                        db.receiptDao().insertAll(receipt.toReceiptDao())
+                        db.receiptDao().insertAll(receipt.toDataReceipt())
                             .subscribeOn(Schedulers.io())
                             .subscribe()
+
+                        db.productDao().insertProducts(
+                            receipt.products.map {
+                                it.toDataProduct(receipt.uid)
+                            }
+                        )
                     })
 
 
@@ -73,8 +81,8 @@ class LocalReceiptsRepoImpl(
                     }, { error ->
                         Log.e("DB", "Error checking receipt: $error")
                     }, {
-                        // If not, than adding
-                        db.receiptDao().insertAll(receipt.toReceiptDao())
+                        // If not, then adding
+                        db.receiptDao().insertAll(receipt.toDataReceipt())
                             .subscribeOn(Schedulers.io())
                             .subscribe()
                     })
@@ -86,7 +94,7 @@ class LocalReceiptsRepoImpl(
         val db = getDatabase(context)
 
         if (receipt != null) {
-            db.receiptDao().delete(receipt.toReceiptDao())
+            db.receiptDao().delete(receipt.toDataReceipt())
                 .subscribeOn(Schedulers.io())
                 .subscribe()
         }
@@ -102,7 +110,15 @@ class LocalReceiptsRepoImpl(
             .subscribeOn(Schedulers.io())
             .map { receiptEntities ->
                 receiptEntities.map { entity ->
-                    entity.toDomainReceipt()
+                    // Convert each Data Receipt to Domain Receipt
+                    entity.toDomainReceipt(
+                        // Get products for each receipt
+                        db.productDao()
+                            .getProductsForReceipt(entity.uid).map { product ->
+                                // Convert each Data product to Domain Product
+                                product.toDomainProduct()
+                            }
+                    )
                 }
             }.blockingGet()
     }
